@@ -7,16 +7,21 @@ const CreatePostForm = () => {
     const router = useRouter();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const [imageUrl, setImageUrl] = useState('');
     const [isLoading, setIsLoading] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsLoading(true);
         try {
+            const token = localStorage.getItem('token'); // Get the token from localStorage
             const res = await fetch('/api/posts', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ title, content }),
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${token}`, // Add the token to the headers
+                },
+                body: JSON.stringify({ title, content, imageUrl }),
             });
             if (res.ok) {
                 router.push('/');
@@ -57,6 +62,18 @@ const CreatePostForm = () => {
                     required
                     className="w-full px-3 py-2 rounded bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue"
                     rows={10}
+                />
+            </div>
+            <div>
+                <label htmlFor="imageUrl" className="block mb-2">
+                    Image URL
+                </label>
+                <input
+                    type="url"
+                    id="imageUrl"
+                    value={imageUrl}
+                    onChange={(e) => setImageUrl(e.target.value)}
+                    className="w-full px-3 py-2 rounded bg-zinc-900 focus:outline-none focus:ring-2 focus:ring-blue"
                 />
             </div>
             <button
