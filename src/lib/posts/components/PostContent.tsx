@@ -1,19 +1,9 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { PostWithAuthor } from '@/lib/posts/types';
 
-interface Post {
-    title: string;
-    imageUrl?: string;
-    author: {
-        name: string;
-    };
-    content: string;
-}
-
-export default function PostContent({ post }: { post: Post }) {
+export default function PostContent({ post }: { post: PostWithAuthor }) {
     return (
         <div className="max-w-2xl mx-auto">
             <Link

@@ -1,27 +1,13 @@
-'use client';
-
 import React from 'react';
-import { useAuth } from '@/contexts/AuthContext';
-import LoginForm from '@/components/LoginForm';
-import PostsList from '../../components/PostsList';
-import CreatePostForm from '@/components/CreatePostForm';
+import Link from 'next/link';
+import PostsList from '@/lib/posts/components/PostsList';
+import { verifySession } from '@/lib/auth/utils';
 
 export default function AdminPage() {
-    const { user } = useAuth();
-
     return (
         <div className="max-w-4xl mx-auto px-4 py-8">
-            {user ? (
-                <>
-                    <h1 className="text-3xl font-bold mb-4">Admin Dashboard</h1>
-                    <CreatePostForm />
-                </>
-            ) : (
-                <>
-                    <h1 className="text-3xl font-bold mb-4">Login</h1>
-                    <LoginForm />
-                </>
-            )}
+            <Link href={'/create-post'} />
+            <PostsList />
         </div>
     );
 }

@@ -1,5 +1,4 @@
-import Layout from '@/components/Layout';
-import { AuthProvider } from '@/contexts/AuthContext';
+import { Layout } from '@/lib/common/components/Layout';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
@@ -7,8 +6,8 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-    title: 'My Blog Template',
-    description: 'A Next.js blog template with authentication and PostgreSQL',
+    title: 'Template',
+    description: 'A Next.js template with authentication and PostgreSQL',
 };
 
 export default function RootLayout({
@@ -19,9 +18,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={inter.className}>
-                <AuthProvider>
-                    <Layout>{children}</Layout>
-                </AuthProvider>
+                <Layout>{children}</Layout>
             </body>
         </html>
     );

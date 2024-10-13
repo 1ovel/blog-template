@@ -1,7 +1,4 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import PostsList from '../components/PostsList';
-import { getPosts, Post } from '../utils/postUtils';
+import PostsList from '../lib/posts/components/PostsList';
 
 export default async function Home() {
     return (

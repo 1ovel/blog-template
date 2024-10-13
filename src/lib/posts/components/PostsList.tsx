@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
-import { getPosts, Post } from '../utils/postUtils';
 import Image from 'next/image';
+import { getPosts } from '@/lib/posts/actions';
 
 export default async function PostsList() {
     const posts = await getPosts();
